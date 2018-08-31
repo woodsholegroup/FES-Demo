@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="20dp"
+	tools:context="com.woodsholegroup.fesdemo.MainActivity">
+
+	<LinearLayout
+		android:id="@+id/layout_main"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:padding="20dp">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="10dp"
+			android:text="FILE SENDING"
+			android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+			android:textColor="@android:color/holo_orange_dark"
+			android:textStyle="bold" />
+
+		<Button
+			android:id="@+id/button_create_file"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/rounded_button"
+			android:drawableLeft="@drawable/ic_create_new_folder_white_24dp"
+			android:drawablePadding="-210dp"
+			android:drawableStart="@drawable/ic_create_new_folder_white_24dp"
+			android:elevation="40dp"
+			android:gravity="center"
+			android:paddingLeft="210dp"
+			android:text="CREATE FILE"
+			android:textColor="@android:color/white" />
+
+		<Button
+			android:id="@+id/button_start_scan"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:background="@drawable/rounded_button_blue"
+			android:elevation="40dp"
+			android:text="LAUNCH FILE SCAN"
+			android:textColor="@android:color/white" />
+
+		<Button
+			android:id="@+id/button_get_status"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:background="@drawable/rounded_button_blue"
+			android:elevation="40dp"
+			android:text="GET LAST IRIDIUM STATUS"
+			android:textColor="@android:color/white" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal">
+
+			<Button
+				android:id="@+id/button_get_status_history"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:background="@drawable/rounded_button_blue"
+				android:padding="10dp"
+				android:text="GET STATUS AT DATE:"
+				android:textAllCaps="false"
+				android:textColor="@android:color/white" />
+
+			<EditText
+				android:id="@+id/text_status_date_year"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginStart="20dp"
+				android:layout_weight="1"
+				android:ems="4"
+				android:gravity="center"
+				android:hint="18"
+				android:inputType="number" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="5dp"
+				android:text="/"
+				android:textStyle="bold" />
+
+			<Spinner
+				android:id="@+id/text_status_date_month"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1.2"
+				android:gravity="center" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="5dp"
+				android:text="/"
+				android:textStyle="bold" />
+
+			<EditText
+				android:id="@+id/text_status_date_day"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:ems="2"
+				android:gravity="center"
+				android:hint="15"
+				android:inputType="number" />
+
+			<EditText
+				android:id="@+id/text_status_date_hour"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_weight="0.8"
+				android:gravity="center"
+				android:hint="03"
+				android:inputType="number" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="5dp"
+				android:text=":"
+				android:textStyle="bold" />
+
+			<EditText
+				android:id="@+id/text_status_date_min"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="0.8"
+				android:digits="2"
+				android:gravity="center"
+				android:hint="15"
+				android:inputType="number" />
+		</LinearLayout>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="20dp"
+			android:layout_marginTop="30dp"
+			android:text="FES EVENTS"
+			android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+			android:textColor="@android:color/holo_orange_dark"
+			android:textStyle="bold" />
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/recyclerView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layoutAnimation="@anim/layout_animation_fall_down"
+			tools:listitem="@layout/item_fes_event" />
+
+		<!-- Database table -->
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="30dp"
+			android:text="VIEW DATA"
+			android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+			android:textColor="@android:color/holo_orange_dark"
+			android:textStyle="bold" />
+
+		<RadioGroup
+			android:id="@+id/radioGroup_db_selection"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:orientation="horizontal">
+
+			<RadioButton
+				android:id="@+id/radio_outbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:checked="true"
+				android:padding="5dp"
+				android:text="OUTBOX" />
+
+			<RadioButton
+				android:id="@+id/radio_inbox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="5dp"
+				android:text="INBOX" />
+
+			<RadioButton
+				android:id="@+id/radio_positions"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="5dp"
+				android:text="POSITIONS" />
+
+			<RadioButton
+				android:id="@+id/radio_logs"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="5dp"
+				android:text="LOGS" />
+		</RadioGroup>
+
+		<HorizontalScrollView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginTop="20dp">
+
+			<ScrollView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content">
+
+				<TableLayout
+					android:id="@+id/table_database"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+			</ScrollView>
+		</HorizontalScrollView>
+
+	</LinearLayout>
+</ScrollView>

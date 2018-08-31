@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="20dp">
+
+	<EditText
+		android:id="@+id/text_dialog_file_content"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:lines="3" />
+
+	<Button
+		android:id="@+id/button_dialog_file_create"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:textColor="@android:color/white"
+		android:background="@drawable/rounded_button"
+		android:elevation="40dp"
+		android:text="CREATE AND DROP FILE in OUTBOX!" />
+</LinearLayout>
