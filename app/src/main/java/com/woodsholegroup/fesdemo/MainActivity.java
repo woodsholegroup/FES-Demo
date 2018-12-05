@@ -172,17 +172,20 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     private void requestFileScanStart() {
         Intent intent = new Intent(Intents.ACTION_START_SCAN);
+        intent.setPackage(FESEventMonitor.getFESInstalledApp(this));
         sendBroadcast(intent);
     }
 
     private void requestLastConnectionStatus() {
         Intent intent = new Intent(Intents.ACTION_BROADCAST_IRIDIUM_STATUS);
+        intent.setPackage(FESEventMonitor.getFESInstalledApp(this));
         sendBroadcast(intent);
     }
 
     private void requestFileDeletion(@NonNull String uuid) {
         Intent intent = new Intent(Intents.ACTION_DELETE_FILE_REF);
         intent.putExtra(Broadcasts.EXTRA_UUID, uuid);
+        intent.setPackage(FESEventMonitor.getFESInstalledApp(this));
         sendBroadcast(intent);
     }
 

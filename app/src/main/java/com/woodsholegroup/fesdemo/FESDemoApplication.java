@@ -28,6 +28,7 @@ public class FESDemoApplication extends Application {
         Intent registerIntent = new Intent();
         registerIntent.setAction(Intents.ACTION_REGISTER);
         registerIntent.putExtra(Intents.EXTRA_PACKAGE_NAME, getPackageName());
+        registerIntent.setPackage(FESEventMonitor.getFESInstalledApp(this));
         sendBroadcast(registerIntent);
     }
 }

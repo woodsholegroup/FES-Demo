@@ -5,8 +5,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.woodsholegroup.fesdemo.api.Broadcasts;
@@ -20,6 +22,8 @@ import java.util.ArrayList;
  */
 public class FESEventMonitor {
     private static final String TAG = "FESEventMonitor";
+    private static final String PACKAGE_THORIUM = "com.clsa";
+    private static final String PACKAGE_MARLIN_PRO = "com.clsa_marlin";
 
     public interface FESMonitoringListener {
         void onErrorReceived(int errorCode, String errorMessage);
@@ -172,5 +176,32 @@ public class FESEventMonitor {
         if (callback != null) {
             callback.onFileScanStarted();
         }
+    }
+
+    /**
+     * @param context {@link Context}
+     * @return {@link #PACKAGE_MARLIN_PRO} if Marlin Pro is installed on the device,
+     * {@link #PACKAGE_THORIUM} is Thorium is installed. Null otherwise
+     */
+    @Nullable
+    public static String getFESInstalledApp(@NonNull Context context) {
+        PackageManager packageManager = context.getPackageManager();
+        if (isPackageInstalled(packageManager, PACKAGE_THORIUM)) {
+            // Thorium is installed
+            return PACKAGE_THORIUM;
+        } else if (isPackageInstalled(packageManager, PACKAGE_MARLIN_PRO)) {
+            // Marlin Pro is installed
+            return PACKAGE_MARLIN_PRO;
+        }
+        return null;
+    }
+
+    private static boolean isPackageInstalled(PackageManager packageManager, @NonNull String packageName) {
+        try {
+            packageManager.getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+        return true;
     }
 }
