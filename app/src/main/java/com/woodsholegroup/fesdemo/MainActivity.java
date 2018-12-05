@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -47,10 +48,13 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private static final String KEY_SELECTED_TABLE = "KEY_SELECTED_TABLE";
+
     private FESEventAdapter eventAdapter;
     private RecyclerView recyclerView;
     private FESEventMonitor fesEventMonitor;
     private FESDatabase fesDatabase;
+    private RadioGroup dbRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,13 +120,24 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 showStatusAtDate(cal.getTime());
             }
         });
-        RadioGroup dbRadioGroup = findViewById(R.id.radioGroup_db_selection);
+
+        dbRadioGroup = findViewById(R.id.radioGroup_db_selection);
         dbRadioGroup.setOnCheckedChangeListener(this);
+        if (savedInstanceState != null) {
+            ((RadioButton) dbRadioGroup.getChildAt(savedInstanceState.getInt(KEY_SELECTED_TABLE, 0)))
+                    .setChecked(true);
+        }
 
         setRecyclerView();
 
         fesEventMonitor = new FESEventMonitor();
         fesDatabase = new FESDatabase(getContentResolver());
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_SELECTED_TABLE, getSelectedRadioButtonIndex());
     }
 
     private void setupViewModel() {
@@ -358,5 +373,12 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private void beep() {
         ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
         toneGenerator.startTone(ToneGenerator.TONE_PROP_BEEP2, 150);
+    }
+
+    /**
+     * @return The index of the selected radio button
+     */
+    private int getSelectedRadioButtonIndex() {
+        return dbRadioGroup.indexOfChild(findViewById(dbRadioGroup.getCheckedRadioButtonId()));
     }
 }
