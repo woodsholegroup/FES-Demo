@@ -49,3 +49,4 @@ captures/
 
 # Crashlytics
 fabric.properties
+app/release/output.json
